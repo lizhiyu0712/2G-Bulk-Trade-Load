@@ -11,5 +11,5 @@ setup(
             "build_exe": "dist",            # Output directory for the build
         }
     },
-    executables=[Executable("2G_bulk_trade_load.py", target_name="2G_bulk_trade_load.exe")]
+    executables=[Executable("./app/2G_bulk_trade_load/2G_bulk_trade_load.py", target_name="2G_bulk_trade_load.exe")]
 )
