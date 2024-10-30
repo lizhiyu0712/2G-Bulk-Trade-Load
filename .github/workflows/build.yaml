@@ -34,7 +34,7 @@ jobs:
 
     release:
       runs-on: windows-2019
-      needs: build
+      needs: build-windows
       steps:
         - name: Download artifact
           uses: actions/download-artifact@v3
