@@ -48,7 +48,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: "V0.1.0"
-          artifacts: "2G_bulk_trade_load.exe"
-          # bodyFile: "2G_bulk_trade_load.exe"
+          artifacts: "."
+          artifactContentType: "exe"
+          bodyFile: "2G_bulk_trade_load.exe"
           prerelease: true
           # token: ${{ secrets.YOUR_GITHUB_TOKEN }}
