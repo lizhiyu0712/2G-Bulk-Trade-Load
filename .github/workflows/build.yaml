@@ -25,8 +25,15 @@ jobs:
       
       - name: Build with pyinstaller
         run: |
-          pyinstaller --onefile --name=2G_bulk_trade_load ./app/2G_bulk_trade_load/2G_bulk_trade_load.py --distpath .
+          pyinstaller --noconfirm --onefile --windowed --icon "app.ico" --name=2G_bulk_trade_load ./app/2G_bulk_trade_load/2G_bulk_trade_load.py --distpath .
       
+      - name: Testing application status
+        uses: GuillaumeFalourd/assert-command-line-output@v2
+        with:
+          command_line: 2G_bulk_trade_load.exe test
+          contains: app run success
+          expected_result: PASSED
+
       - name : Upload executable
         uses: actions/upload-artifact@v4
         with:
@@ -37,22 +44,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: "V0.1.0"
-          artifacts: "."
-          artifactContentType: "exe"
-          # bodyFile: "2G_bulk_trade_load.exe"
+          artifacts: "*.exe"
           prerelease: true
-
-  # release:
-  #   runs-on: windows-2019
-  #   needs: build-windows
-  #   permissions:
-  #     contents: write
-  #   steps:
-  #     # - name: Download artifact
-  #     #   uses: actions/download-artifact@v3
-  #     #   with:
-  #     #     name: 2G_bulk_trade_load
-  #     #     path: .
-
-      
-  #         # token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+          allowUpdates: true
