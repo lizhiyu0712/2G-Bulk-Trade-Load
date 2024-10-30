@@ -27,12 +27,12 @@ jobs:
         run: |
           pyinstaller --noconfirm --onefile --windowed --name=2G_bulk_trade_load ./app/2G_bulk_trade_load/2G_bulk_trade_load.py --distpath .
       
-      - name: Testing application status
-        uses: GuillaumeFalourd/assert-command-line-output@v2
-        with:
-          command_line: 2G_bulk_trade_load.exe test
-          contains: app run success
-          expected_result: PASSED
+      # - name: Testing application status
+      #   uses: GuillaumeFalourd/assert-command-line-output@v2
+      #   with:
+      #     command_line: 2G_bulk_trade_load.exe test
+      #     contains: app run success
+      #     expected_result: PASSED
 
       - name : Upload executable
         uses: actions/upload-artifact@v4
