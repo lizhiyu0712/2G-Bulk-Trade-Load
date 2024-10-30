@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: 2G_bulk_trade_load
-          path: bin/2G_bulk_trade_load.exe
+          path: 2G_bulk_trade_load.exe
 
   release:
     runs-on: windows-2019
@@ -43,6 +43,6 @@ jobs:
         with:
           tag: "V0.1.0"
           # artifacts: "release.tar.gz,foo/*.txt"
-          bodyFile: "bin/2G_bulk_trade_load.exe"
+          bodyFile: "2G_bulk_trade_load.exe"
           prerelease: true
           # token: ${{ secrets.YOUR_GITHUB_TOKEN }}
