@@ -45,5 +45,6 @@ jobs:
         with:
           tag: "V0.1.0"
           artifacts: "*.zip"
+          bodyFile: "README.md"
           prerelease: true
           allowUpdates: true
