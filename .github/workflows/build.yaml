@@ -38,11 +38,17 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: 2G_bulk_trade_load
+          path: .
+
       - name : Create Release
         uses: ncipollo/release-action@v1
         with:
           tag: "V0.1.0"
-          # artifacts: "release.tar.gz,foo/*.txt"
-          bodyFile: "2G_bulk_trade_load.exe"
+          artifacts: "2G_bulk_trade_load"
+          # bodyFile: "2G_bulk_trade_load.exe"
           prerelease: true
           # token: ${{ secrets.YOUR_GITHUB_TOKEN }}
