@@ -41,7 +41,8 @@ jobs:
       - name : Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "release.tar.gz,foo/*.txt"
+          tag: "V0.1.0"
+          # artifacts: "release.tar.gz,foo/*.txt"
           bodyFile: "bin/2G_bulk_trade_load.exe"
           prerelease: true
           # token: ${{ secrets.YOUR_GITHUB_TOKEN }}
