@@ -7,6 +7,8 @@ on:
 jobs:
   Build-And-Release:
     runs-on: windows-2019
+    permissions:
+       contents: read|write
     steps:
 
       - name: Checkout
