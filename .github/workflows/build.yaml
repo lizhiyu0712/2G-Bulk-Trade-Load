@@ -22,7 +22,7 @@ jobs:
       - name: Run pyinstaller
         run: |
           python -m pyinstaller 2G_bulk_trade_load.spec
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: Windows_qwiklabs
           path: dist/2G_bulk_trade_load.exe
