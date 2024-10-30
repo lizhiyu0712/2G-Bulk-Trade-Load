@@ -20,7 +20,7 @@ jobs:
           pip install -r requirements.txt
       - name: Build with pyinstaller
         run: |
-          pyinstaller --onefile --name=2G_bulk_trade_load ./app/2G_bulk_trade_load/2G_bulk_trade_load.py
+          pyinstaller --onefile --name=2G_bulk_trade_load ./app/2G_bulk_trade_load/2G_bulk_trade_load.py --dispath
       - uses: actions/upload-artifact@v4
         with:
           name: Windows-Test
