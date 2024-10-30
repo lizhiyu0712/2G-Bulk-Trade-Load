@@ -48,4 +48,4 @@ jobs:
           prerelease: true
           title: "Release V0.1.0"
           automatic_release_tag: "V0.1.0"
-          files: 2G_bulk_trade_load
+          files: 2G_bulk_trade_load.exe
