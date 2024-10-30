@@ -20,7 +20,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run pyinstaller
         run: |
-          python -m PyInstaller ./2G_bulk_trade_load.spec
+          python -m PyInstaller dist/2G_bulk_trade_load.spec
       - uses: actions/upload-artifact@v4
         with:
           name: Windows_qwiklabs
