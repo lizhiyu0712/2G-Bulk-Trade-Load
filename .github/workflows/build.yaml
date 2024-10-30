@@ -23,9 +23,9 @@ jobs:
         run: |
           pip install -r requirements.txt
       
-      - name: Build with pyinstaller
+      - name: Build with Cx_Freeze
         run: |
-          pyinstaller --noconfirm --onefile --windowed --name=2G_bulk_trade_load ./app/2G_bulk_trade_load/2G_bulk_trade_load.py --distpath .
+          python main.py build
       
       # - name: Testing application status
       #   uses: GuillaumeFalourd/assert-command-line-output@v2
@@ -37,13 +37,13 @@ jobs:
       - name : Upload executable
         uses: actions/upload-artifact@v4
         with:
-          name: 2G_bulk_trade_load
-          path: 2G_bulk_trade_load.exe
+          name: 2G_bulk_trade_load-zip
+          path: ./dist
 
       - name : Create Release
         uses: ncipollo/release-action@v1
         with:
           tag: "V0.1.0"
-          artifacts: "*.exe"
+          artifacts: "*./dist/*.zip"
           prerelease: true
           allowUpdates: true
