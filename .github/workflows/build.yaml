@@ -43,8 +43,10 @@ jobs:
       - name : Create Release
         uses: ncipollo/release-action@v1
         with:
-          tag: "V0.1.0"
+          tag: "V1.1.0"  #Change Version every time have changes
           artifacts: "*.zip"
+          replacesArtifacts: true
+          removeArtifacts: true
           bodyFile: "README.md"
-          prerelease: true
+          prerelease: false
           allowUpdates: true
