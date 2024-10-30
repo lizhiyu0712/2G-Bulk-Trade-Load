@@ -44,6 +44,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: "V0.1.0"
-          artifacts: "*./dist/*.zip"
+          artifacts: "*./dist/*.*"
           prerelease: true
           allowUpdates: true
