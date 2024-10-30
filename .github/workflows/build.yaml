@@ -30,22 +30,33 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: 2G_bulk_trade_load
-          path: 2G_bulk_trade_load.exe
+          path: bin/2G_bulk_trade_load.exe
 
   release:
     runs-on: windows-2019
     needs: build-windows
     steps:
-      # - name: Download artifact
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: 2G_bulk_trade_load
-      #     path: ./bin
-
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true
-          title: "Release V0.1.0"
-          automatic_release_tag: "V0.1.0"
-          files: 2G_bulk_trade_load.exe
+          tag_name: ${{ github.event.head_commit.message }}
+          release_name: ${{ github.event.head_commit.message }}
+          overwrite: true
+          body: |
+            Test Release v1.0.0
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{steps.create_release.outputs.upload_url}}
+          asset_path: bin/2G_bulk_trade_load.exe
+          asset_name: Qwiklab-Badge-Checker-Windows-amd64.exe
+          asset_content_type: application/zip
