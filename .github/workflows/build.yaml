@@ -31,7 +31,7 @@ jobs:
         with:
           name: 2G_bulk_trade_load
           path: 2G_bulk_trade_load.exe
-          
+
   release:
     runs-on: windows-2019
     needs: build-windows
@@ -39,7 +39,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: 2G_bulk_trade_load
+          name: 2G_bulk_trade_load.exe
           path: ./bin
 
       - name: Create GitHub Release
