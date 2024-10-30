@@ -1,4 +1,6 @@
 from cx_Freeze import setup, Executable
+import shutil
+import os
 
 setup(
     name="2G Bulk Trade Load",
@@ -13,3 +15,7 @@ setup(
     },
     executables=[Executable("./app/2G_bulk_trade_load/2G_bulk_trade_load.py", target_name="2G_bulk_trade_load.exe")]
 )
+
+# Create the zip file in the root directory after build completes
+zip_path = shutil.make_archive("2G Bulk Trade Load", 'zip', "dist")
+print(f"Build completed. Zip file location: {os.path.abspath(zip_path)}")

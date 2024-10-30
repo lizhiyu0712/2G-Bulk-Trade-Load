@@ -37,13 +37,13 @@ jobs:
       - name : Upload executable
         uses: actions/upload-artifact@v4
         with:
-          name: 2G_bulk_trade_load-zip
+          name: 2G_bulk_trade_load
           path: ./dist
 
       - name : Create Release
         uses: ncipollo/release-action@v1
         with:
           tag: "V0.1.0"
-          artifacts: "*./dist/*.*"
+          artifacts: "*./dist/"
           prerelease: true
           allowUpdates: true
