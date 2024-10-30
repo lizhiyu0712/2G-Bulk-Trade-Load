@@ -25,7 +25,7 @@ jobs:
       
       - name: Build with pyinstaller
         run: |
-          pyinstaller --noconfirm --onefile --windowed --icon "app.ico" --name=2G_bulk_trade_load ./app/2G_bulk_trade_load/2G_bulk_trade_load.py --distpath .
+          pyinstaller --noconfirm --onefile --windowed --name=2G_bulk_trade_load ./app/2G_bulk_trade_load/2G_bulk_trade_load.py --distpath .
       
       - name: Testing application status
         uses: GuillaumeFalourd/assert-command-line-output@v2
