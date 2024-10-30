@@ -3,7 +3,7 @@ import shutil
 import os
 
 setup(
-    name="2G Bulk Trade Load",
+    name="2G_Bulk_Trade_Load",
     version="0.1.0",
     description="",
     options={
