@@ -8,44 +8,44 @@ jobs:
   build-windows:
     runs-on: windows-2019
     steps:
+
       - name: Checkout
         uses: actions/checkout@v1
+      
       - name: Install Python
         uses: actions/setup-python@v1
         with:
           python-version: '3.12.7'
           architecture: 'x64'
+      
       - name: Install requirements
         run: |
           pip install -r requirements.txt
+      
       - name: Build with pyinstaller
         run: |
           pyinstaller --onefile --name=2G_bulk_trade_load ./app/2G_bulk_trade_load/2G_bulk_trade_load.py --distpath .
-      - uses: actions/upload-artifact@v4
+      
+      - name : Upload executable
+        uses: actions/upload-artifact@v4
         with:
-          name: Windows-Test
+          name: 2G_bulk_trade_load
           path: 2G_bulk_trade_load.exe
 
-      - name: create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.event.head_commit.message }}
-          release_name: ${{ github.event.head_commit.message }}
-          overwrite: true
-          body: |
-            Test Release v1.0.0
-          draft: false
-          prerelease: false
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{steps.create_release.outputs.upload_url}}
-          asset_path: 2G_bulk_trade_load.exe
-          asset_name: Qwiklab-Badge-Checker-Windows-amd64.exe
-          asset_content_type: application/zip
+    release:
+      runs-on: windows-2019
+      needs: build
+      steps:
+        - name: Download artifact
+          uses: actions/download-artifact@v3
+          with:
+            name: 2G_bulk_trade_load
+            path: ./bin
+
+        - name: Create GitHub Release
+          uses: ncipollo/release-action@v1
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            tag: v0.1.0  # Update or use dynamic tagging if needed
+            name: Release v0.1.0
+            assets: ./bin/2G_bulk_trade_load.exe
