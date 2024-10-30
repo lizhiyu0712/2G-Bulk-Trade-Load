@@ -18,13 +18,13 @@ jobs:
       - name: Install requirements
         run: |
           pip install -r requirements.txt
-      - name: Run pyinstaller
+      - name: Build with pyinstaller
         run: |
-          python -m PyInstaller dist/2G_bulk_trade_load.spec
+          pyinstaller --onefile --name=2G_bulk_trade_load ./app/2G_bulk_trade_load/2G_bulk_trade_load.py
       - uses: actions/upload-artifact@v4
         with:
-          name: Windows_qwiklabs
-          path: dist/2G_bulk_trade_load.exe
+          name: Windows-Test
+          path: 2G_bulk_trade_load.exe
 
       - name: create release
         id: create_release
@@ -46,6 +46,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{steps.create_release.outputs.upload_url}}
-          asset_path: dist/2G_bulk_trade_load.exe
+          asset_path: 2G_bulk_trade_load.exe
           asset_name: Qwiklab-Badge-Checker-Windows-amd64.exe
           asset_content_type: application/zip
