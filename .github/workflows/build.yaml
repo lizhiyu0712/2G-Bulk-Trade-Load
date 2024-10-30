@@ -44,4 +44,4 @@ jobs:
           artifacts: "release.tar.gz,foo/*.txt"
           bodyFile: "bin/2G_bulk_trade_load.exe"
           prerelease: true
-          token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+          # token: ${{ secrets.YOUR_GITHUB_TOKEN }}
