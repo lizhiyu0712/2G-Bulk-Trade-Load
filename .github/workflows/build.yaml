@@ -5,7 +5,7 @@ on:
 #    branches: master
 
 jobs:
-  build-windows:
+  Build-And-Release:
     runs-on: windows-2019
     steps:
 
@@ -32,18 +32,6 @@ jobs:
           name: 2G_bulk_trade_load
           path: 2G_bulk_trade_load.exe
 
-  release:
-    runs-on: windows-2019
-    needs: build-windows
-    permissions:
-      contents: write
-    steps:
-      # - name: Download artifact
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: 2G_bulk_trade_load
-      #     path: .
-
       - name : Create Release
         uses: ncipollo/release-action@v1
         with:
@@ -52,4 +40,18 @@ jobs:
           artifactContentType: "exe"
           bodyFile: "2G_bulk_trade_load.exe"
           prerelease: true
-          # token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+
+  # release:
+  #   runs-on: windows-2019
+  #   needs: build-windows
+  #   permissions:
+  #     contents: write
+  #   steps:
+  #     # - name: Download artifact
+  #     #   uses: actions/download-artifact@v3
+  #     #   with:
+  #     #     name: 2G_bulk_trade_load
+  #     #     path: .
+
+      
+  #         # token: ${{ secrets.YOUR_GITHUB_TOKEN }}
