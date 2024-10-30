@@ -31,21 +31,21 @@ jobs:
         with:
           name: 2G_bulk_trade_load
           path: 2G_bulk_trade_load.exe
+          
+  release:
+    runs-on: windows-2019
+    needs: build-windows
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: 2G_bulk_trade_load
+          path: ./bin
 
-    release:
-      runs-on: windows-2019
-      needs: build-windows
-      steps:
-        - name: Download artifact
-          uses: actions/download-artifact@v3
-          with:
-            name: 2G_bulk_trade_load
-            path: ./bin
-
-        - name: Create GitHub Release
-          uses: ncipollo/release-action@v1
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            tag: v0.1.0  # Update or use dynamic tagging if needed
-            name: Release v0.1.0
-            assets: ./bin/2G_bulk_trade_load.exe
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v0.1.0  # Update or use dynamic tagging if needed
+          name: Release v0.1.0
+          assets: ./bin/2G_bulk_trade_load.exe
