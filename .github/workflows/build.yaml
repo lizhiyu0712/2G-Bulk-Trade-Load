@@ -25,7 +25,7 @@ jobs:
       
       - name: Build with Cx_Freeze
         run: |
-          python main.py build
+          python ./app/2G_bulk_trade_load/main.py build
       
       # - name: Testing application status
       #   uses: GuillaumeFalourd/assert-command-line-output@v2
